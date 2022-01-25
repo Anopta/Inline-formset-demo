@@ -1,0 +1,35 @@
+{% extends 'delivery/index.html '%}
+
+{% block content %}
+<form method="post" id="createProduct" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <div>
+            <h4>Create Product</h4>
+        </div>
+        <div>
+            {{ form.non_form_errors }}
+            {{ form.as_p }}
+            <h5>Add delivery points</h5>
+             <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    {% for formset in delivery_point_formset %}
+                        {{ formset.id }}
+                        <tr>
+                            <td>
+                                {% if delivery_point_formset.can_delete %}
+                                    {{ formset.DELETE }} {{ formset.DELETE.label }}
+                                {% endif %}
+                            </td>
+                            <td>{{ formset.address }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+             </table>
+            {{ delivery_point_formset.non_form_errors }}
+            {{ delivery_point_formset.management_form }}
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

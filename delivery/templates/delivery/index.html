@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <a href="{% url 'create_product' %}">Add new product</a>
+    {% block content %}
+    {% endblock %}
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/jquery.formset.js' %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('#createProduct tbody tr').formset({
+            prefix: '{{ delivery_point_formset.prefix }}'
+        });
+    })
+</script>
+</body>
+</html>

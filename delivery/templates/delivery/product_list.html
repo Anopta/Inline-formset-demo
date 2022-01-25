@@ -1,0 +1,26 @@
+{% extends 'delivery/index.html' %}
+
+{% block content %}
+    <div class=row>
+        <h1>Products</h1>
+        {% if object_list %}
+            {% for product in object_list %}
+                <div class="col-sm-4">
+                    <div>
+                        <div>
+                            <div>
+                                <p>{{ product.product_name }}</p>
+                                <p>{{ product.type.name }}</p>
+                                <p>{{ product.delivery_date }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{% url 'update_product' product.pk %}">Edit</a>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
